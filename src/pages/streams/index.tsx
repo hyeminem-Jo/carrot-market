@@ -1,6 +1,7 @@
 import React from 'react';
 import { NextPage } from 'next';
 import Layout from '@/components/layout';
+import FloatingButton from "@/components/floating-button";
 
 const Index: NextPage = () => {
   return (
@@ -13,7 +14,7 @@ const Index: NextPage = () => {
           </div>
         ))}
         {/* 새로운 live stream 을 만들고 싶을 때 누르는 버튼 */}
-        <button className="fixed hover:bg-orange-500 transition-colors cursor-pointer bottom-24 right-5 shadow-xl bg-orange-400 rounded-full p-4 border-transparent text-white">
+        <FloatingButton href="/streams/create">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -27,7 +28,7 @@ const Index: NextPage = () => {
               d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"
             />
           </svg>
-        </button>
+        </FloatingButton>
       </div>
     </Layout>
   );
