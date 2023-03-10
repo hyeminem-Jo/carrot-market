@@ -2,6 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import Button from "@/components/button";
 import Input from "@/components/input";
+import TextArea from "@/components/textarea";
 
 const Create: NextPage = () => {
   return (
@@ -15,13 +16,7 @@ const Create: NextPage = () => {
         type="text"
         kind="price"
       />
-      <div>
-        <label className="text-sm text-gray-700 font-medium">Description</label>
-        <textarea
-          className="mt-1 shadow-sm w-full focus:ring-orange-500 rounded-md border-gray-300 focus:border-orange-500"
-          rows={4}
-        />
-      </div>
+      <TextArea name="description" label="Description" />
       <Button text="Go Live" />
     </div>
   );

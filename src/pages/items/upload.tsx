@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Button from "@/components/button";
 import Input from "@/components/input";
+import TextArea from "@/components/textarea";
 
 const Upload: NextPage = () => {
   return (
@@ -35,18 +36,12 @@ const Upload: NextPage = () => {
         type="text"
         kind="price"
       />
-      <div>
-        <label className="text-sm text-gray-700 font-medium">Description</label>
-        <textarea
-          className="mt-1 shadow-sm w-full focus:ring-orange-500 rounded-md border-gray-300 focus:border-orange-500"
-          rows={4}
-        />
-      </div>
+      <TextArea name="description" label="Description" />
       <Button text="Upload item" />
     </div>
   );
 };
 
 export default Upload;
-<input className="hidden" type="file" accept="image/*" />
+// <input className="hidden" type="file" accept="image/*" />
 {/*  input 태그를 label 태그 안에 넣고 input 을 숨기는 간단한 기술 - react 로 input 태그를 렌더링은 하지만 css 로 이를 숨김 */}
