@@ -3,6 +3,9 @@ interface InputProps {
   name: string;
   kind?: "text" | "phone" | "price";
   [key: string]: any;
+  // input 에 원하는 다른 prop 을 전달할 때 사용
+  // ex) password, email 와 같은 type 이나 required, max-length 같은 속성 등을 정의할 때
+  // 이들을 {...rest} 의 형태로 input 에 넣어줌
 }
 
 export default function Input({
