@@ -43,7 +43,12 @@ const Layout = ({ title, canGoBack, hasTabBar, children }: LayoutProps) => {
       <div className={cls('pt-[70px]', hasTabBar ? 'pb-[88px]' : '')}>{children}</div>
       {hasTabBar ? (
         <nav className="bg-white max-w-lg text-gray-800 border-t fixed bottom-0 w-full px-10 pb-5 pt-3 flex justify-between items-center">
-          <Link href="/" className="flex flex-col items-center space-y-2">
+          <Link href="/" className={cls(
+            "flex flex-col items-center space-y-2 ",
+            router.pathname === "/"
+              ? "text-orange-500"
+              : "hover:text-gray-500 transition-colors"
+          )}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -60,7 +65,12 @@ const Layout = ({ title, canGoBack, hasTabBar, children }: LayoutProps) => {
             </svg>
             <span>홈</span>
           </Link>
-          <Link href="/community" className="flex flex-col items-center space-y-2">
+          <Link href="/community" className={cls(
+            "flex flex-col items-center space-y-2 ",
+            router.pathname === "/community"
+              ? "text-orange-500"
+              : "hover:text-gray-500 transition-colors"
+          )}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -77,7 +87,12 @@ const Layout = ({ title, canGoBack, hasTabBar, children }: LayoutProps) => {
             </svg>
             <span>동네생활</span>
           </Link>
-          <Link href="/chats" className="flex flex-col items-center space-y-2">
+          <Link href="/chats" className={cls(
+            "flex flex-col items-center space-y-2 ",
+            router.pathname === "/chats"
+              ? "text-orange-500"
+              : "hover:text-gray-500 transition-colors"
+          )}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -94,7 +109,12 @@ const Layout = ({ title, canGoBack, hasTabBar, children }: LayoutProps) => {
             </svg>
             <span>채팅</span>
           </Link>
-          <Link href="/streams" className="flex flex-col items-center space-y-2">
+          <Link href="/streams" className={cls(
+            "flex flex-col items-center space-y-2 ",
+            router.pathname === "/streams"
+              ? "text-orange-500"
+              : "hover:text-gray-500 transition-colors"
+          )}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -110,7 +130,12 @@ const Layout = ({ title, canGoBack, hasTabBar, children }: LayoutProps) => {
             </svg>
             <span>Live</span>
           </Link>
-          <Link href="/profile" className="flex flex-col items-center space-y-2">
+          <Link href="/profile" className={cls(
+            "flex flex-col items-center space-y-2 ",
+            router.pathname === "/profile"
+              ? "text-orange-500"
+              : "hover:text-gray-500 transition-colors"
+          )}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
