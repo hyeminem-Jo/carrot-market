@@ -10,6 +10,7 @@ export default function Message({
     message,
     avatarUrl,
     reversed,
+  // 내가 보내는 메시지는 오른쪽에 위치하기 때문에 말풍선 순서를 뒤집어야 하므로 reversed 속성 추가
   }: MessageProps) {
   return (
     <div
