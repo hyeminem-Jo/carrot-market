@@ -1,13 +1,49 @@
 import { useState } from 'react';
-import { cls } from '@/libs/utils';
-import Button from "@/components/button";
-import Input from "@/components/input";
+import { cls } from '@/libs/client/utils';
+import Button from '@/components/button';
+import Input from '@/components/input';
+import { NextPage } from 'next';
+import { useForm } from 'react-hook-form';
+import useMutation from '@/libs/client/useMutation';
 
-export default function Enter() {
+interface EnterForm {
+  email?: string;
+  phone?: number;
+}
+
+const Enter: NextPage = () => {
+  // hook 으로부터 배열을 받을 것
+  // ** 백엔드로 POST fetch 해주는 function, 이를 mutation 이라고 함 => data 를 백엔드에 POST 로 보내면 데이터베이스의 상태를 mutate(변경) 할 수 있음
+  // 배열의 첫 번째 item: mutation 을 작동시킬 function
+  // 배열의 두 번째 item: mutation 에서 일어나는 일들(로딩중, 에러, POST 의 결과)의 data
+  const [enter, { loading, data, error }] = useMutation('/api/users/enter');
+  const { register, reset, handleSubmit } = useForm<EnterForm>();
   const [method, setMethod] = useState<'email' | 'phone'>('email');
   // "email", "phone" 두 문자열 중 하나만 될 수 있음
-  const onEmailClick = () => setMethod('email');
-  const onPhoneClick = () => setMethod('phone');
+  const onEmailClick = () => {
+    reset();
+    setMethod('email');
+  };
+  const onPhoneClick = () => {
+    reset();
+    setMethod('phone');
+  };
+  console.log(loading, data, error);
+  const onValid = (formData: EnterForm) => {
+    if (loading) return;
+    enter(formData); // data 는 phone 이나 email 값
+    // setSubmitting(true);
+    // fetch('/api/users/enter', {
+    //   method: 'POST',
+    //   body: JSON.stringify(data),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // }).then(() => {
+    //   setSubmitting(false);
+    // });
+  };
+  // console.log(watch());
 
   return (
     <div className="px-4 mt-16">
@@ -40,12 +76,19 @@ export default function Enter() {
             </button>
           </div>
         </div>
-        <form className="flex flex-col mt-8 space-y-4">
-          {method === "email" ? (
-            <Input name="email" label="Email address" type="email" required />
-          ) : null}
-          {method === "phone" ? (
+        <form onSubmit={handleSubmit(onValid)} className="flex flex-col mt-8 space-y-4">
+          {method === 'email' ? (
             <Input
+              register={register('email')}
+              name="email"
+              label="Email address"
+              type="email"
+              required
+            />
+          ) : null}
+          {method === 'phone' ? (
+            <Input
+              register={register('phone')}
               name="phone"
               label="Phone number"
               type="number"
@@ -57,8 +100,10 @@ export default function Enter() {
           {/*  {method === 'email' ? 'Get login link' : null}*/}
           {/*  {method === 'phone' ? 'Get one-time password' : null}*/}
           {/*</button>*/}
-          {method === 'email' ? <Button text="Get login link" /> : null}
-          {method === 'phone' ? <Button text="Get one-time password" /> : null}
+          {method === 'email' ? <Button text={loading ? 'Loading' : 'Get login link'} /> : null}
+          {method === 'phone' ? (
+            <Button text={loading ? 'Loading' : 'Get one-time password'} />
+          ) : null}
         </form>
         <div className="mt-6">
           <div className="relative">
@@ -87,4 +132,5 @@ export default function Enter() {
       </div>
     </div>
   );
-}
+};
+export default Enter;
