@@ -1,9 +1,11 @@
 import type { NextPage } from 'next';
-import Button from "@/components/button";
-import Input from "@/components/input";
-import TextArea from "@/components/textarea";
+import Button from '@/components/button';
+import Input from '@/components/input';
+import TextArea from '@/components/textarea';
+import { useForm } from 'react-hook-form';
 
 const Upload: NextPage = () => {
+  const { register } = useForm();
   return (
     <div className="px-4 py-16">
       <div>
@@ -27,8 +29,9 @@ const Upload: NextPage = () => {
           {/*  input 태그를 label 태그 안에 넣고 input 을 숨기는 간단한 기술 - react 로 input 태그를 렌더링은 하지만 css 로 이를 숨김 */}
         </label>
       </div>
-      <Input required label="Name" name="name" type="text" />
+      <Input register={register('name')} required label="Name" name="name" type="text" />
       <Input
+        register={register('price')}
         required
         label="Price"
         placeholder="0.00"
@@ -44,4 +47,6 @@ const Upload: NextPage = () => {
 
 export default Upload;
 // <input className="hidden" type="file" accept="image/*" />
-{/*  input 태그를 label 태그 안에 넣고 input 을 숨기는 간단한 기술 - react 로 input 태그를 렌더링은 하지만 css 로 이를 숨김 */}
+{
+  /*  input 태그를 label 태그 안에 넣고 input 을 숨기는 간단한 기술 - react 로 input 태그를 렌더링은 하지만 css 로 이를 숨김 */
+}
